@@ -100,6 +100,7 @@ export default {
   }
 
   ._debugger_board_main {
+    background: @background-color-light;
     width: 100%;
     position: fixed;
   }
