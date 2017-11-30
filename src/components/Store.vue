@@ -1,9 +1,9 @@
 <template>
   <div class="_debugger_board_store_table">
-    <div class="bar">
-      <span class="btn" @click="onClickTabPage(0)">LocalStorage</span>
-      <span class="btn" @click="onClickTabPage(1)">Cookie</span>
-      <span class="btn" @click="updateData">UpdateStore</span>
+    <div class="_debugger_board_common_bar">
+      <span class="_debugger_board_common_btn" @click="onClickTabPage(0)">LocalStorage</span>
+      <span class="_debugger_board_common_btn" @click="onClickTabPage(1)">Cookie</span>
+      <span class="_debugger_board_common_btn" @click="updateData">UpdateStore</span>
     </div>
     <table>
       <tr>
