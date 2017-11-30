@@ -16,20 +16,20 @@ export default {
   data() {
     return {
       log: []
-    }
+    };
   },
   mounted() {
-    window.addLog = this.addLog
+    window.addLog = this.addLog;
   },
   methods: {
     addLog(log) {
-      this.log.push(log)
+      this.log.push(log);
     },
     clearAllLog() {
-      this.log = []
+      this.log = [];
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

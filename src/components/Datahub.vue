@@ -23,9 +23,9 @@ export default {
   data() {
     return {
       list: window._debugger_board_datahub || []
-    }
+    };
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

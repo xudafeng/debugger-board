@@ -17,10 +17,10 @@
 
 <script>
 
-import Store from './components/Store'
-import Logger from './components/Logger'
-import Datahub from './components/Datahub'
-import Network from './components/Network'
+import Store from './components/Store';
+import Logger from './components/Logger';
+import Datahub from './components/Datahub';
+import Network from './components/Network';
 
 export default {
   name: 'board',
@@ -37,26 +37,26 @@ export default {
       ],
       datahubBottom: 0,
       temporarilyBottom: 0
-    }
+    };
   },
   created() {
-    this.devicePixelRatio = window.devicePixelRatio
+    this.devicePixelRatio = window.devicePixelRatio;
   },
   methods: {
     onClickRefresh() {
-      window.location.reload()
+      window.location.reload();
     },
     onClickHideOrShow() {
-      this.ifBoardShow = !this.ifBoardShow
+      this.ifBoardShow = !this.ifBoardShow;
     },
     onClickToggleNav(componentName) {
-      this.currentView = componentName
+      this.currentView = componentName;
     },
     onPanMove(e) {
-      this.datahubBottom = this.temporarilyBottom - e.deltaY
+      this.datahubBottom = this.temporarilyBottom - e.deltaY;
     },
     onPanEnd(e) {
-      this.temporarilyBottom = this.datahubBottom
+      this.temporarilyBottom = this.datahubBottom;
     }
   },
   components: {
@@ -65,7 +65,7 @@ export default {
     Network: Network,
     Logger: Logger
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

@@ -32,41 +32,41 @@ export default {
         'Cookie',
         'UpdateStore'
       ]
-    }
+    };
   },
   computed: {
     currentStorage: function() {
-      this.updateData()
+      this.updateData();
       return [
         this.localStorage,
         this.cookie
-      ][this.tabPage]
+      ][this.tabPage];
     }
   },
   created() {
-    this.localStorage = window.localStorage
-    this.cookie = this.pathCookie(window.document.cookie)
+    this.localStorage = window.localStorage;
+    this.cookie = this.pathCookie(window.document.cookie);
   },
   methods: {
     onClickTabPage(tabPage) {
-      this.tabPage = tabPage
+      this.tabPage = tabPage;
     },
     updateData() {
-      this.localStorage = window.localStorage
-      this.cookie = this.pathCookie(window.document.cookie)
+      this.localStorage = window.localStorage;
+      this.cookie = this.pathCookie(window.document.cookie);
     },
     pathCookie(cookie) {
-      const cookieObject = {}
+      const cookieObject = {};
       if (cookie && cookie.length) {
         cookie.split(';').map(item => {
-          const everyItem = item.split('=')
-          cookieObject[everyItem[0]] = everyItem[1]
-        })
+          const everyItem = item.split('=');
+          cookieObject[everyItem[0]] = everyItem[1];
+        });
       }
-      return cookieObject
+      return cookieObject;
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

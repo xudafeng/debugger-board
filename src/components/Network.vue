@@ -10,13 +10,13 @@ export default {
   name: 'network',
   data() {
     return {
-    }
+    };
   },
   methods: {
   },
   components: {
   }
-}
+};
 </script>
 
 <style lang="less" scoped>
