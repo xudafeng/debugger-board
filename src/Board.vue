@@ -1,0 +1,116 @@
+<template>
+  <div v-bind:style="{ fontSize: devicePixelRatio }">
+    <div class="_debugger_board_thumbnail" v-show="!ifBoardShow" @click="onClickHideOrShow">Show</div>
+    <v-touch class="_debugger_board_main" v-bind:style="{ bottom: datahubBottom + 'px' }" v-show="ifBoardShow" v-on:panmove="onPanMove" v-on:panend="onPanEnd" v-bind:pan-options="{ direction: 'horizontal', threshold: 0 }">
+      <div class="_debugger_board_nav bar">
+        <span class="btn" v-for="item in componentlList" v-bind:class="{ actived: item === currentView }" @click="onClickToggleNav(item)">{{ item }}</span>
+      </div>
+      <component v-bind:is="currentView" class="_debugger_board_content">
+      </component>
+      <div class="_debugger_board_foot_bar bar">
+        <span class="btn" @click="onClickRefresh">Refresh</span>
+        <span class="btn" @click="onClickHideOrShow">Hide</span>
+      </div>
+    </v-touch>
+  </div>
+</template>
+
+<script>
+
+import Store from './components/Store'
+import Logger from './components/Logger'
+import Datahub from './components/Datahub'
+import Network from './components/Network'
+
+export default {
+  name: 'board',
+  data() {
+    return {
+      ifBoardShow: true,
+      devicePixelRatio: 2,
+      currentView: 'DataHub',
+      componentlList: [
+        'DataHub',
+        'Store',
+        'Logger',
+        'Network'
+      ],
+      datahubBottom: 0,
+      temporarilyBottom: 0
+    }
+  },
+  created() {
+    this.devicePixelRatio = window.devicePixelRatio
+  },
+  methods: {
+    onClickRefresh() {
+      window.location.reload()
+    },
+    onClickHideOrShow() {
+      this.ifBoardShow = !this.ifBoardShow
+    },
+    onClickToggleNav(componentName) {
+      this.currentView = componentName
+    },
+    onPanMove(e) {
+      this.datahubBottom = this.temporarilyBottom - e.deltaY
+    },
+    onPanEnd(e) {
+      this.temporarilyBottom = this.datahubBottom
+    }
+  },
+  components: {
+    DataHub: Datahub,
+    Store: Store,
+    Network: Network,
+    Logger: Logger
+  }
+}
+</script>
+
+<style lang="less" scoped>
+  @import './less/common';
+  @import './less/components/bar';
+  @import './less/components/btn';
+
+  .actived {
+    color: black;
+    border-bottom: @border-width orange solid;
+  }
+
+  .btn:active {
+    background: @background-color !important;
+  }
+
+  ._debugger_board_nav {
+    padding-top: @border-width;
+    color: grey;
+  }
+
+  ._debugger_board_thumbnail {
+    display: inline-block;
+    position: fixed;
+    bottom: 10px;
+    right: 0px;
+    width: 40px;
+    height: 40px;
+    background: @background-color;
+    text-align: center;
+    line-height: 40px;
+  }
+
+  ._debugger_board_main {
+    width: 100%;
+    position: fixed;
+  }
+
+  ._debugger_board_content {
+    min-height: 50px;
+    width: 100%;
+  }
+
+  ._debugger_board_foot_bar {
+    border-top: none;
+    text-align: right;
+  }
+</style>
