@@ -97,14 +97,14 @@ export default {
     background: @background-color;
     text-align: center;
     line-height: 40px;
-    z-index: 999;
+    z-index: 9999999;
   }
 
   ._debugger_board_main {
     background: @background-color-light;
     width: 100%;
     position: fixed;
-    z-index: 999;
+    z-index: 9999999;
   }
 
   ._debugger_board_content {
