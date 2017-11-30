@@ -22,8 +22,7 @@ export default {
   name: 'datahub',
   data() {
     return {
-      list: [
-      ]
+      list: window._debugger_board_datahub || []
     }
   }
 }
