@@ -2,14 +2,14 @@
   <div v-bind:style="{ fontSize: devicePixelRatio }">
     <div class="_debugger_board_thumbnail" v-show="!ifBoardShow" @click="onClickHideOrShow">Show</div>
     <v-touch class="_debugger_board_main" v-bind:style="{ bottom: datahubBottom + 'px' }" v-show="ifBoardShow" v-on:panmove="onPanMove" v-on:panend="onPanEnd" v-bind:pan-options="{ direction: 'horizontal', threshold: 0 }">
-      <div class="_debugger_board_nav bar">
-        <span class="btn" v-for="item in componentlList" v-bind:class="{ actived: item === currentView }" @click="onClickToggleNav(item)">{{ item }}</span>
+      <div class="_debugger_board_nav _debugger_board_common_bar">
+        <span class="_debugger_board_common_btn" v-for="item in componentlList" v-bind:class="{ actived: item === currentView }" @click="onClickToggleNav(item)">{{ item }}</span>
       </div>
       <component v-bind:is="currentView" class="_debugger_board_content">
       </component>
-      <div class="_debugger_board_foot_bar bar">
-        <span class="btn" @click="onClickRefresh">Refresh</span>
-        <span class="btn" @click="onClickHideOrShow">Hide</span>
+      <div class="_debugger_board_foot_bar _debugger_board_common_bar">
+        <span class="_debugger_board_common_btn" @click="onClickRefresh">Refresh</span>
+        <span class="_debugger_board_common_btn" @click="onClickHideOrShow">Hide</span>
       </div>
     </v-touch>
   </div>
@@ -78,8 +78,8 @@ export default {
     border-bottom: @border-width orange solid;
   }
 
-  .btn:active {
-    background: @background-color !important;
+  ._debugger_board_common_btn:active {
+    background: @background-acitve-color !important;
   }
 
   ._debugger_board_nav {
@@ -97,11 +97,14 @@ export default {
     background: @background-color;
     text-align: center;
     line-height: 40px;
+    z-index: 9999999;
   }
 
   ._debugger_board_main {
+    background: @background-color-light;
     width: 100%;
     position: fixed;
+    z-index: 9999999;
   }
 
   ._debugger_board_content {

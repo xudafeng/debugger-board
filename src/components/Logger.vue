@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bar _debugger_board_logger_navbar">
+    <div class="_debugger_board_common_bar _debugger_board_logger_navbar">
       <div class="_debugger_board_logger_tip">
       </div>
       <div class="_debugger_board_logger_clear_btn" @click="clearAllLog">Clear</div>
