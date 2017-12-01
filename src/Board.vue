@@ -5,7 +5,9 @@
       <div class="_debugger_board_nav _debugger_board_common_bar">
         <span class="_debugger_board_common_btn" v-for="item in componentlList" v-bind:class="{ actived: item === currentView }" @click="onClickToggleNav(item)">{{ item }}</span>
       </div>
-      <component v-bind:is="currentView" class="_debugger_board_content">
+      <Logger class="_debugger_board_content" v-show="currentView === 'Logger'">
+      </Logger>
+      <component v-bind:is="currentView === 'Logger' ? '' : currentView" class="_debugger_board_content">
       </component>
       <div class="_debugger_board_foot_bar _debugger_board_common_bar">
         <span class="_debugger_board_common_btn" @click="onClickRefresh">Refresh</span>
