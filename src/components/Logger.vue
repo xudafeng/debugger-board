@@ -55,12 +55,12 @@ export default {
       }
       logType = this.options[type] ? logType : this.defaultType;
       logIndent = this.indent >= 0 ? logIndent : 0;
-      const date = new Date;
+      const date = new Date();
       this.logList.push({
         type: logType,
         output: JSON.stringify(content, null, logIndent),
         time: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}\.${date.getMilliseconds()}`
-      })
+      });
     },
     clearAllLog() {
       this.logList = [];
