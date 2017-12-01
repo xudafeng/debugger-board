@@ -8,7 +8,7 @@
       </div>
       <div class="_debugger_board_logger_clear_btn" @click="clearAllLog">Clear</div>
     </div>
-    <div class="_debugger_board_logger_content">
+    <div class="_debugger_board_logger_content" ref="list">
       <p class="_debugger_board_logger_item" v-bind:style="{ color: options[item.type]['color'] }" v-for="item in logList" v-if="logFilterType === 'all' || logFilterType === item['type']">({{ item.time }}) {{ item.output }}</p>
     </div>
   </div>
@@ -44,6 +44,12 @@ export default {
   },
   created() {
     window.addLog = this.addLog;
+  },
+  updated() {
+    this.$nextTick(() => {
+      const list = this.$refs.list;
+      list.scrollTop = list.scrollHeight;
+    });
   },
   methods: {
     addLog(content, type = this.defaultType, indent = 0) {
@@ -105,6 +111,8 @@ export default {
 
   ._debugger_board_logger_content {
     min-height: 2*@logger-line-height;
+    max-height: 10*@logger-line-height;
+    overflow: scroll;
 
     ._debugger_board_logger_item {
       font-family: monaco;
