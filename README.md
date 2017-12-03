@@ -24,7 +24,7 @@
 ## Installation
 
 ```bash
-$ npm i debugger-board --save-dev
+$ npm i debugger-board --save
 ```
 
 ## CDN
