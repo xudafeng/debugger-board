@@ -23,7 +23,7 @@ window._debugger_board = window._debugger_board || {
     element.append(container);
 
     new Vue({
-      el: '#_debugger_board',
+      el: `#${identifer}`,
       render: h => h(Board)
     });
   },
