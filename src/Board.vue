@@ -81,7 +81,7 @@ export default {
   }
 
   ._debugger_board_common_btn:active {
-    background: @background-acitve-color !important;
+    background: @background-color !important;
   }
 
   ._debugger_board_nav {
