@@ -25,7 +25,7 @@
 
 ### Common Usage
 
-* Script with attribute tag
+* Script with attribute tag for append to point element
 
 ```html
 <script append="body" src="//unpkg.com/debugger-board@latest/dist/debugger-board.js"></script>
