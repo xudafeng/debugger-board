@@ -23,11 +23,30 @@
 
 ## Installation
 
-```bash
-$ npm i debugger-board --save
+### Common Usage
+
+* Script with attribute tag
+
+```html
+<script append="body" src="//unpkg.com/debugger-board@latest/dist/debugger-board.js"></script>
 ```
 
-## CDN
+* Script without attribute tag
+
+```html
+<script src="//unpkg.com/debugger-board@latest/dist/debugger-board.js"></script>
+<script>
+  window._debugger_board.append(document.body);
+</script>
+```
+
+### Use with datahub-proxy-middleware
+
+```bash
+$ npm i datahub-proxy-middleware --save-dev
+```
+
+And set showBoard `true`.
 
 ## License
 
