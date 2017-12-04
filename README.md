@@ -23,11 +23,46 @@
 
 ## Installation
 
+### Normal
+
+* Script with attribute
+
+```Html
+<script append="body" src="https://unpkg.com/debugger-board/dist/debugger-board.js"></script>
+```
+
+
+
+* Script without attribute
+
+```Html
+<script src="https://unpkg.com/debugger-board/dist/debugger-board.js"></script>
+<script>
+  window._debugger_board.append(document.body);
+</script>
+```
+
+
+
+### In Datahub-proxy-middleware
+
 ```bash
 $ npm i debugger-board --save
 ```
 
+> How [datahub-proxy-middleware.js](https://github.com/macacajs/datahub-proxy-middleware/blob/805badcb84a2469902aaced510072130f59f9aae/lib/datahub-proxy-middleware.js#L59) include it.
+>
+> In [datahub-proxy-middleware](https://github.com/macacajs/datahub-proxy-middleware)
+
+
+
 ## CDN
+
+### unpkg
+
+https://unpkg.com/debugger-board/dist/debugger-board.js
+
+
 
 ## License
 
