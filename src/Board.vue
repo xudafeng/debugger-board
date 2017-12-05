@@ -56,9 +56,11 @@ export default {
     },
     onPanMove(e) {
       this.datahubBottom = this.temporarilyBottom - e.deltaY;
+      e.stopPropagation();
     },
     onPanEnd(e) {
       this.temporarilyBottom = this.datahubBottom;
+      e.stopPropagation();
     }
   },
   components: {
