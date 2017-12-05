@@ -11,9 +11,14 @@
     </style>
   </head>
   <body>
-    <script append="body" src="/dist/debugger-board.js"></script>
     <script>
-      //window._debugger_board.append(document.body);
+      var isOnline = !!~location.host.indexOf('github');
+      var script = document.createElement('script');
+      script.setAttribute('append', 'body');
+      script.type = 'text/javascript';
+      script.src = (isOnline ? '//unpkg.com/debugger-board@latest' : '.') + '/dist/debugger-board.js';
+      var head = document.getElementsByTagName('head')[0];
+      head.appendChild(script);
     </script>
   </body>
 </html>
