@@ -25,6 +25,8 @@
 
 ### Common Usage
 
+[Live demo](https://macacajs.github.io/debugger-board/)
+
 * Script with attribute tag for append to point element
 
 ```html
