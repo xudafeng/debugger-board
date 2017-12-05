@@ -80,42 +80,44 @@ export default {
     border-bottom: @border-width orange solid;
   }
 
-  ._debugger_board_common_btn:active {
-    background: @background-color !important;
-  }
+  ._debugger_board {
+    &_thumbnail {
+      display: inline-block;
+      position: fixed;
+      bottom: 10px;
+      right: 0px;
+      width: 40px;
+      height: 40px;
+      background: @background-color;
+      text-align: center;
+      line-height: 40px;
+      z-index: 9999999;
+    }
 
-  ._debugger_board_nav {
-    padding-top: @border-width;
-    color: grey;
-  }
+    &_main {
+      background: @background-color-light;
+      width: 100%;
+      position: fixed;
+      z-index: 9999999;
+    }
 
-  ._debugger_board_thumbnail {
-    display: inline-block;
-    position: fixed;
-    bottom: 10px;
-    right: 0px;
-    width: 40px;
-    height: 40px;
-    background: @background-color;
-    text-align: center;
-    line-height: 40px;
-    z-index: 9999999;
-  }
+    &_common_btn:active {
+      background: @background-color !important;
+    }
 
-  ._debugger_board_main {
-    background: @background-color-light;
-    width: 100%;
-    position: fixed;
-    z-index: 9999999;
-  }
+    &_nav {
+      padding-top: @border-width;
+      color: grey;
+    }
 
-  ._debugger_board_content {
-    min-height: 50px;
-    width: 100%;
-  }
+    &_content {
+      min-height: 50px;
+      width: 100%;
+    }
 
-  ._debugger_board_foot_bar {
-    border-top: none;
-    text-align: right;
+    &_foot_bar {
+      border-top: none;
+      text-align: right;
+    }
   }
 </style>
