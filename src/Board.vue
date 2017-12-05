@@ -1,5 +1,5 @@
 <template>
-  <div v-bind:style="{ fontSize: devicePixelRatio }">
+  <div v-bind:style="{ fontSize: devicePixelRatio }" id="_debugger_board_app">
     <div class="_debugger_board_thumbnail" v-show="!ifBoardShow" @click="onClickHideOrShow">Show</div>
     <div class="_debugger_board_main" v-bind:style="{ bottom: datahubBottom + 'px' }" v-show="ifBoardShow">
       <v-touch class="_debugger_board_nav _debugger_board_common_bar" v-on:panmove="onPanMove" v-on:panend="onPanEnd" v-bind:pan-options="{ direction: 'horizontal', threshold: 0 }">
