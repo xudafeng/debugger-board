@@ -80,15 +80,6 @@ export default {
     border-bottom: @border-width orange solid;
   }
 
-  ._debugger_board_common_btn:active {
-    background: @background-color !important;
-  }
-
-  ._debugger_board_nav {
-    padding-top: @border-width;
-    color: grey;
-  }
-
   ._debugger_board_thumbnail {
     display: inline-block;
     position: fixed;
@@ -107,15 +98,24 @@ export default {
     width: 100%;
     position: fixed;
     z-index: 9999999;
-  }
 
-  ._debugger_board_content {
-    min-height: 50px;
-    width: 100%;
-  }
+    ._debugger_board_common_btn:active {
+      background: @background-color !important;
+    }
 
-  ._debugger_board_foot_bar {
-    border-top: none;
-    text-align: right;
+    ._debugger_board_nav {
+      padding-top: @border-width;
+      color: grey;
+    }
+
+    ._debugger_board_content {
+      min-height: 50px;
+      width: 100%;
+    }
+
+    ._debugger_board_foot_bar {
+      border-top: none;
+      text-align: right;
+    }
   }
 </style>
