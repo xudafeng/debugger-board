@@ -81,11 +81,13 @@ export default {
     color: black !important;
   }
 
-  ._debugger_board_logger_navbar {
-    text-align: right;
-    border-bottom: @border-width @border-color solid;
+  ._debugger_board_logger {
+    &_navbar {
+      text-align: right;
+      border-bottom: @border-width @border-color solid;
+    }
 
-    ._debugger_board_logger_clear_btn {
+    &_clear_btn {
       display: inline-block;
       width: 40px;
       height: 20px;
@@ -94,11 +96,11 @@ export default {
       border-left: @border-width @border-color solid;
     }
 
-    ._debugger_board_logger_clear_btn:active {
+    &_clear_btn:active {
       background: @background-acitve-color;
     }
 
-    ._debugger_board_logger_tip {
+    &_tip {
       display: inline-block;
       float: left;
       color: grey;
@@ -110,15 +112,19 @@ export default {
         margin: 0 5px;
       }
     }
-  }
 
-  ._debugger_board_logger_content {
-    min-height: 2*@logger-line-height;
-    max-height: 10*@logger-line-height;
-    overflow-y: scroll;
-    opacity: 0.8;
+    &_content {
+      min-height: 2*@logger-line-height;
+      max-height: 10*@logger-line-height;
+      overflow-y: scroll;
+      opacity: 0.8;
+    }
 
-    ._debugger_board_logger_item {
+    &_content::-webkit-scrollbar {
+      display:none
+    }
+
+    &_item {
       font-family: monaco;
       padding: 0 10px;
       word-break: break-word;
@@ -126,9 +132,5 @@ export default {
       border-bottom: @border-color @border-width solid;
       font-size: @logger-font-size;
     }
-  }
-
-  ._debugger_board_logger_content::-webkit-scrollbar {
-    display:none
   }
 </style>
