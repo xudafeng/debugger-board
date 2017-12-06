@@ -2,14 +2,14 @@
   <div v-bind:style="{ fontSize: devicePixelRatio }" id="_debugger_board_app">
     <div class="_debugger_board_thumbnail" v-show="!ifBoardShow" @click="onClickHideOrShow">Show</div>
     <div class="_debugger_board_main" v-bind:style="{ bottom: datahubBottom + 'px' }" v-show="ifBoardShow">
-      <v-touch class="_debugger_board_nav _debugger_board_common_bar" v-on:panmove="onPanMove" v-on:panend="onPanEnd" v-bind:pan-options="{ direction: 'horizontal', threshold: 0 }">
+      <v-touch class="_debugger_board_nav _debugger_board_common_bar" v-on:panmove="onPanMove" v-on:panend="onPanEnd" v-bind:pan-options="{ direction: 'horizontal', threshold: 0, domEvents: true }">
         <span class="_debugger_board_common_btn" v-for="item in componentlList" v-bind:class="{ actived: item === currentView }" @click="onClickToggleNav(item)">{{ item }}</span>
       </v-touch>
       <Logger class="_debugger_board_content" v-show="currentView === 'Logger'">
       </Logger>
       <component v-bind:is="currentView === 'Logger' ? '' : currentView" class="_debugger_board_content">
       </component>
-      <v-touch class="_debugger_board_foot_bar _debugger_board_common_bar" v-on:panmove="onPanMove" v-on:panend="onPanEnd" v-bind:pan-options="{ direction: 'horizontal', threshold: 0 }">
+      <v-touch class="_debugger_board_foot_bar _debugger_board_common_bar" v-on:panmove="onPanMove" v-on:panend="onPanEnd" v-bind:pan-options="{ direction: 'horizontal', threshold: 0, domEvents: true }">
         <span class="_debugger_board_common_btn" @click="onClickRefresh">Refresh</span>
         <span class="_debugger_board_common_btn" @click="onClickHideOrShow">Hide</span>
       </v-touch>
@@ -56,11 +56,11 @@ export default {
     },
     onPanMove(e) {
       this.datahubBottom = this.temporarilyBottom - e.deltaY;
-      e.stopPropagation();
+      e.srcEvent.stopPropagation();
     },
     onPanEnd(e) {
       this.temporarilyBottom = this.datahubBottom;
-      e.stopPropagation();
+      e.srcEvent.stopPropagation();
     }
   },
   components: {
