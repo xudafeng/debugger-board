@@ -42,7 +42,7 @@
 </script>
 ```
 
-### Use with datahub-proxy-middleware
+### Use with [datahub-proxy-middleware](//github.com/macacajs/datahub-proxy-middleware)
 
 ```bash
 $ npm i datahub-proxy-middleware --save-dev
