@@ -1,6 +1,6 @@
 <template>
   <div v-bind:style="{ fontSize: devicePixelRatio }" id="_debugger_board_app">
-    <div class="_debugger_board_thumbnail" v-show="!ifBoardShow" @click="onClickHideOrShow">Show</div>
+    <div class="_debugger_board_thumbnail" v-show="!ifBoardShow" @click="onClickHideOrShow">D</div>
     <div class="_debugger_board_main" v-bind:style="{ bottom: datahubBottom + 'px' }" v-show="ifBoardShow">
       <v-touch class="_debugger_board_nav _debugger_board_common_bar" v-on:panmove="onPanMove" v-on:panend="onPanEnd" v-bind:pan-options="{ direction: 'horizontal', threshold: 0, domEvents: true }">
         <span class="_debugger_board_common_btn" v-for="item in componentlList" v-bind:class="{ actived: item === currentView }" @click="onClickToggleNav(item)">{{ item }}</span>
@@ -28,7 +28,7 @@ export default {
   name: 'board',
   data() {
     return {
-      ifBoardShow: true,
+      ifBoardShow: false,
       devicePixelRatio: 2,
       currentView: 'DataHub',
       componentlList: [
@@ -86,13 +86,14 @@ export default {
     &_thumbnail {
       display: inline-block;
       position: fixed;
-      bottom: 10px;
+      bottom: 20px;
       right: 0px;
-      width: 40px;
-      height: 40px;
+      width: 5vmin;
+      height: 5vmin;
       background: @background-color;
+      font-size: 4vmin;
       text-align: center;
-      line-height: 40px;
+      line-height: 5vmin;
       z-index: 9999999;
     }
 
