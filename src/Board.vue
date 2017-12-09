@@ -29,7 +29,7 @@ export default {
   name: 'board',
   data() {
     return {
-      ifBoardShow: false,
+      ifBoardShow: true,
       devicePixelRatio: 2,
       currentView: 'Logger',
       componentlList: [
