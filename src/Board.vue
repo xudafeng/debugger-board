@@ -34,9 +34,9 @@ export default {
       currentView: 'Logger',
       componentlList: [
         'Logger',
+        'DataHub',
         'Store',
-        'Network',
-        'DataHub'
+        'Network'
       ],
       datahubBottom: 0,
       temporarilyBottom: 0,
