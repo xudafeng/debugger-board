@@ -30,12 +30,12 @@ export default {
     return {
       ifBoardShow: false,
       devicePixelRatio: 2,
-      currentView: 'DataHub',
+      currentView: 'Logger',
       componentlList: [
-        'DataHub',
-        'Store',
         'Logger',
-        'Network'
+        'Store',
+        'Network',
+        'DataHub'
       ],
       datahubBottom: 0,
       temporarilyBottom: 0
