@@ -10,6 +10,7 @@
       <component v-bind:is="currentView === 'Logger' ? '' : currentView" class="_debugger_board_content">
       </component>
       <v-touch class="_debugger_board_foot_bar _debugger_board_common_bar" v-on:panmove="onPanMove" v-on:panend="onPanEnd" v-bind:pan-options="{ direction: 'horizontal', threshold: 0, domEvents: true }">
+        <span class="_debugger_board_version">{{ version }}</span>
         <span class="_debugger_board_common_btn" @click="onClickRefresh">Refresh</span>
         <span class="_debugger_board_common_btn" @click="onClickHideOrShow">Hide</span>
       </v-touch>
@@ -30,15 +31,16 @@ export default {
     return {
       ifBoardShow: false,
       devicePixelRatio: 2,
-      currentView: 'DataHub',
+      currentView: 'Logger',
       componentlList: [
+        'Logger',
         'DataHub',
         'Store',
-        'Logger',
         'Network'
       ],
       datahubBottom: 0,
-      temporarilyBottom: 0
+      temporarilyBottom: 0,
+      version: window._debugger_board.version
     };
   },
   created() {
@@ -121,6 +123,13 @@ export default {
     &_foot_bar {
       border-top: none;
       text-align: right;
+    }
+
+    &_version {
+      position: absolute;
+      color: lightgrey;
+      bottom: 2px;
+      left: 2px;
     }
   }
 </style>
