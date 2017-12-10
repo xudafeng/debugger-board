@@ -2,9 +2,9 @@
   <div>
     <div class="_debugger_board_common_bar _debugger_board_logger_navbar">
       <div class="_debugger_board_logger_tip">
-        <span class="_debugger_board_logger_filter_btn" v-for="(value, key) in options" v-bind:class="{ actived: key === logFilterType }" @touchstart="logFilterType = key">{{ key }}</span>
+        <span class="_debugger_board_logger_filter_btn" v-for="(value, key) in options" v-bind:class="{ actived: key === logFilterType }" @touchstart.prevent.stop="logFilterType = key" @touchmove.prevent.stop @touchend.prevent.stop>{{ key }}</span>
       </div>
-      <div class="_debugger_board_logger_clear_btn" @touchstart="clearAllLog">Clear</div>
+      <div class="_debugger_board_logger_clear_btn" @touchstart.prevent.stop="clearAllLog" @touchmove.prevent.stop @touchend.prevent.stop>Clear</div>
     </div>
     <div class="_debugger_board_logger_content" ref="list">
       <p class="_debugger_board_logger_item" v-bind:style="{ color: options[item.type]['color'] }" v-for="item in logList" v-if="logFilterType === 'all' || logFilterType === item['type']">[{{ item.time }}] {{ item.output }}</p>

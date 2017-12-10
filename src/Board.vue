@@ -1,9 +1,9 @@
 <template>
   <div v-bind:style="{ fontSize: devicePixelRatio }" id="_debugger_board_app" @touchstart.prevent.stop @touchmove.prevent.stop @touchend.prevent.stop>
-    <div class="_debugger_board_thumbnail" v-show="!ifBoardShow" @touchstart="onTouchHideOrShow">D</div>
+    <div class="_debugger_board_thumbnail" v-show="!ifBoardShow" @touchstart.prevent.stop="onTouchHideOrShow" @touchmove.prevent.stop @touchend.prevent.stop>D</div>
     <div class="_debugger_board_main" v-bind:style="{ bottom: datahubBottom + 'px' }" v-show="ifBoardShow">
       <v-touch class="_debugger_board_nav _debugger_board_common_bar" v-on:panstart="onPanStart" v-on:panmove="onPanMove" v-on:panend="onPanEnd" v-bind:pan-options="{ direction: 'horizontal', threshold: 0}">
-        <span class="_debugger_board_common_btn" v-for="item in componentlList" v-bind:class="{ actived: item === currentView }" @touchstart="onTouchToggleNav(item)">{{ item }}</span>
+        <span class="_debugger_board_common_btn" v-for="item in componentlList" v-bind:class="{ actived: item === currentView }" @touchstart.prevent.stop="onTouchToggleNav(item)" @touchmove.prevent.stop @touchend.prevent.stop>{{ item }}</span>
       </v-touch>
       <Logger class="_debugger_board_content" v-show="currentView === 'Logger'">
       </Logger>
@@ -11,8 +11,8 @@
       </component>
       <v-touch class="_debugger_board_foot_bar _debugger_board_common_bar" v-on:panstart="onPanStart" v-on:panmove="onPanMove" v-on:panend="onPanEnd" v-bind:pan-options="{ direction: 'horizontal', threshold: 0}">
         <span class="_debugger_board_version">{{ version }}</span>
-        <span class="_debugger_board_common_btn" @touchstart="onTouchRefresh">Refresh</span>
-        <span class="_debugger_board_common_btn" @touchstart="onTouchHideOrShow">Hide</span>
+        <span class="_debugger_board_common_btn" @touchstart.prevent.stop="onTouchRefresh" @touchmove.prevent.stop @touchend.prevent.stop>Refresh</span>
+        <span class="_debugger_board_common_btn" @touchstart.prevent.stop="onTouchHideOrShow" @touchmove.prevent.stop @touchend.prevent.stop>Hide</span>
       </v-touch>
     </div>
   </div>
