@@ -1,9 +1,9 @@
 <template>
   <div class="_debugger_board_store_table">
     <div class="_debugger_board_common_bar">
-      <span class="_debugger_board_common_btn" @click="onClickTabPage(0)">LocalStorage</span>
-      <span class="_debugger_board_common_btn" @click="onClickTabPage(1)">Cookie</span>
-      <span class="_debugger_board_common_btn" @click="updateData">UpdateStore</span>
+      <span class="_debugger_board_common_btn" @touchstart="onTouchTabPage(0)">LocalStorage</span>
+      <span class="_debugger_board_common_btn" @touchstart="onTouchTabPage(1)">Cookie</span>
+      <span class="_debugger_board_common_btn" @touchstart="updateData">UpdateStore</span>
     </div>
     <table>
       <tr>
@@ -48,7 +48,7 @@ export default {
     this.cookie = this.pathCookie(window.document.cookie);
   },
   methods: {
-    onClickTabPage(tabPage) {
+    onTouchTabPage(tabPage) {
       this.tabPage = tabPage;
     },
     updateData() {
