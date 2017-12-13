@@ -24,7 +24,7 @@ window._debugger_board = window._debugger_board || {
     });
   },
   /* eslint-disable */
-  version: `"${VERSION}"`
+  version: VERSION
   /* eslint-enable */
 };
 

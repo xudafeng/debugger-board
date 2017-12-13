@@ -64,7 +64,7 @@ if (process.env.NODE_ENV !== 'production') {
       'process.env': {
         NODE_ENV: '"dev"'
       },
-      'VERSION': pkg.version
+      'VERSION': '"' + pkg.version + '"'
     }),
   ])
 }
@@ -76,7 +76,7 @@ if (process.env.NODE_ENV === 'production') {
       'process.env': {
         NODE_ENV: '"production"'
       },
-      'VERSION': pkg.version
+      'VERSION': '"' + pkg.version + '"'
     }),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,
