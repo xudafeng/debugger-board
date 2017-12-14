@@ -58,13 +58,25 @@ module.exports = {
   devtool: '#eval-source-map'
 }
 
+if (process.env.NODE_ENV !== 'production') {
+    module.exports.plugins = (module.exports.plugins || []).concat([
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"dev"'
+      },
+      'VERSION': '"' + pkg.version + '"'
+    }),
+  ])
+}
+
 if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map'
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'
-      }
+      },
+      'VERSION': '"' + pkg.version + '"'
     }),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: false,
@@ -74,6 +86,6 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
-    })
+    }),
   ])
 }

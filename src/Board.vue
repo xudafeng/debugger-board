@@ -31,28 +31,29 @@ export default {
     return {
       ifBoardShow: true,
       devicePixelRatio: 2,
-      currentView: 'DataHub',
+      currentView: 'Logger',
       componentlList: [
+        'Logger',
         'DataHub',
         'Store',
-        'Logger',
         'Network'
       ],
       datahubBottom: 0,
-      temporarilyBottom: 0
+      temporarilyBottom: 0,
+      version: window._debugger_board.version
     };
   },
   created() {
     this.devicePixelRatio = window.devicePixelRatio;
   },
   methods: {
-    onClickRefresh() {
+    onTouchRefresh() {
       window.location.reload();
     },
-    onClickHideOrShow() {
+    onTouchHideOrShow() {
       this.ifBoardShow = !this.ifBoardShow;
     },
-    onClickToggleNav(componentName) {
+    onTouchToggleNav(componentName) {
       this.currentView = componentName;
     },
     onPanStart(e) {
@@ -63,13 +64,11 @@ export default {
       e.srcEvent.preventDefault();
       e.srcEvent.stopPropagation();
       this.datahubBottom = this.temporarilyBottom - e.deltaY;
-      e.srcEvent.stopPropagation();
     },
     onPanEnd(e) {
       e.srcEvent.preventDefault();
       e.srcEvent.stopPropagation();
       this.temporarilyBottom = this.datahubBottom;
-      e.srcEvent.stopPropagation();
     }
   },
   components: {
@@ -95,13 +94,14 @@ export default {
     &_thumbnail {
       display: inline-block;
       position: fixed;
-      bottom: 10px;
+      bottom: 20px;
       right: 0px;
-      width: 40px;
-      height: 40px;
+      width: 5vmin;
+      height: 5vmin;
       background: @background-color;
+      font-size: 4vmin;
       text-align: center;
-      line-height: 40px;
+      line-height: 5vmin;
       z-index: 9999999;
     }
 
@@ -129,6 +129,13 @@ export default {
     &_foot_bar {
       border-top: none;
       text-align: right;
+    }
+
+    &_version {
+      position: absolute;
+      color: lightgrey;
+      bottom: 2px;
+      left: 2px;
     }
   }
 </style>
