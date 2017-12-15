@@ -1,11 +1,11 @@
 <template>
-  <div class="_debugger_board_store_table">
+  <div class="_debugger_board_store">
     <div class="_debugger_board_common_bar">
       <span class="_debugger_board_common_btn" @touchstart="onTouchTabPage(0)">LocalStorage</span>
       <span class="_debugger_board_common_btn" @touchstart="onTouchTabPage(1)">Cookie</span>
       <span class="_debugger_board_common_btn" @touchstart="updateData">UpdateStore</span>
     </div>
-    <table>
+    <table class="_debugger_board_store_table">
       <tr>
         <th><strong> key </strong> </th>
         <th><strong> value </strong></th>
@@ -74,13 +74,18 @@ export default {
   @import '../less/components/bar';
   @import '../less/components/btn';
 
-  ._debugger_board_store_table>* {
-    width: 100%;
-  }
-
-  table {
-    border-collapse: collapse;
-    text-align: left;
+  ._debugger_board_store {
+    overflow-x: scroll;
+    & > * {
+      width: 100%;
+    }
+    &_table {
+      border-collapse: collapse;
+      text-align: left;
+    }
+    &_table::-webkit-scrollbar {
+      display:none
+    }
   }
 
   th, td {
