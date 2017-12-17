@@ -1,9 +1,22 @@
 'use strict'
 
+const fs = require('fs');
 const path = require('path')
 const webpack = require('webpack')
 
 const pkg = require('./package')
+
+const isProduction = process.env.NODE_ENV === 'production';
+
+class WebpackAfterAllPlugin {
+  apply (compiler) {
+    compiler.plugin('done', (compilation) => {
+      setTimeout(() => {
+        fs.writeFileSync(path.join(__dirname, '.ready'), '')
+      }, 1000)
+    })
+  }
+}
 
 module.exports = {
   entry: './src',
@@ -39,15 +52,18 @@ module.exports = {
               'css-loader',
               'less-loader'
             ]
-          }
-        }
+          },
+          postLoaders: {
+            js: 'istanbul-instrumenter-loader?esModules=true&coverageVariable=__macaca_coverage__',
+          },
+        },
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/
-      }
-    ]
+      },
+    ],
   },
   resolve: {
     alias: {
@@ -55,37 +71,27 @@ module.exports = {
     },
     extensions: ['*', '.js', '.vue', '.json']
   },
-  devtool: '#eval-source-map'
-}
-
-if (process.env.NODE_ENV !== 'production') {
-    module.exports.plugins = (module.exports.plugins || []).concat([
+  devtool: '#eval-source-map',
+  plugins: [
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"dev"'
       },
-      'VERSION': '"' + pkg.version + '"'
+      VERSION: `'${pkg.version}'`
     }),
-  ])
+    new WebpackAfterAllPlugin()
+  ]
 }
 
-if (process.env.NODE_ENV === 'production') {
+if (isProduction) {
   module.exports.devtool = '#source-map'
-  module.exports.plugins = (module.exports.plugins || []).concat([
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      },
-      'VERSION': '"' + pkg.version + '"'
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: false,
-      compress: {
-        warnings: false
-      }
-    }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
-    }),
-  ])
+  module.exports.plugins.push(new webpack.optimize.UglifyJsPlugin({
+    sourceMap: false,
+    compress: {
+      warnings: false
+    }
+  }))
+  module.exports.plugins.push(new webpack.LoaderOptionsPlugin({
+    minimize: true
+  }))
 }

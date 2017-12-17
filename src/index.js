@@ -16,7 +16,7 @@ window._debugger_board = window._debugger_board || {
     }
     const container = document.createElement('div');
     container.id = identifer;
-    element.append(container);
+    element.appendChild(container);
 
     new Vue({
       el: `#${identifer}`,

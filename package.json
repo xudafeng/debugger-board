@@ -5,8 +5,11 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot --host 0.0.0.0",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "lint": "eslint --ext .js,.vue src",
-    "prepublish": "npm run build"
+    "lint": "eslint --fix --ext .js,.vue src",
+    "prepublish": "npm run build",
+    "serve": "npm run dev &",
+    "test": "macaca run -d ./test --verbose --reporter macaca-reporter",
+    "ci": "npm run lint && npm run serve && npm run test"
   },
   "dependencies": {},
   "browserslist": [
@@ -23,6 +26,7 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
+    "babel-preset-latest": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
@@ -35,8 +39,14 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "eslint-plugin-vue-libs": "^1.2.1",
+    "istanbul-instrumenter-loader": "^3.0.0",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
+    "macaca-cli": "^2.0.12",
+    "macaca-electron": "^1.1.17",
+    "macaca-istanbul": "^1.0.2",
+    "macaca-reporter": "^1.0.36",
+    "macaca-wd": "^1.0.18",
     "postcss-loader": "^2.0.9",
     "postcss-px-to-viewport": "^0.0.3",
     "pre-commit": "^1.2.2",
@@ -45,6 +55,7 @@
     "vue-template-compiler": "^2.4.4",
     "vue-touch": "^2.0.0-beta.4",
     "webpack": "^3.6.0",
-    "webpack-dev-server": "^2.9.1"
+    "webpack-dev-server": "^2.9.1",
+    "xutil": "^1.0.9"
   }
 }
