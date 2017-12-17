@@ -1,7 +1,9 @@
-coverage.html
 node_modules
 .travis.yml
+.ready
 coverage/
+reports/
+screenshots/
 src/
 *.tgz
 *.sw*
