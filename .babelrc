@@ -1,7 +1,18 @@
 {
-  "presets": [
-    ["env", { "modules": false }],
-    "latest",
-    "stage-3"
-  ]
+  presets: [
+    ['env',
+      {
+       modules: false
+      }
+    ],
+    'latest',
+    'stage-3'
+  ],
+  env: {
+    test: {
+      plugins: [
+        'istanbul'
+      ]
+    }
+  }
 }

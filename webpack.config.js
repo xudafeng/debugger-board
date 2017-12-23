@@ -53,9 +53,6 @@ module.exports = {
               'less-loader'
             ]
           },
-          postLoaders: {
-            js: 'istanbul-instrumenter-loader?esModules=true&coverageVariable=__macaca_coverage__',
-          },
         },
       },
       {
