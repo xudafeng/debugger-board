@@ -1,22 +1,11 @@
 'use strict'
 
-const fs = require('fs');
 const path = require('path')
 const webpack = require('webpack')
 
 const pkg = require('./package')
 
 const isProduction = process.env.NODE_ENV === 'production';
-
-class WebpackAfterAllPlugin {
-  apply (compiler) {
-    compiler.plugin('done', (compilation) => {
-      setTimeout(() => {
-        fs.writeFileSync(path.join(__dirname, '.ready'), '')
-      }, 1000)
-    })
-  }
-}
 
 module.exports = {
   entry: './src',
@@ -75,8 +64,7 @@ module.exports = {
         NODE_ENV: '"dev"'
       },
       VERSION: `'${pkg.version}'`
-    }),
-    new WebpackAfterAllPlugin()
+    })
   ]
 }
 
