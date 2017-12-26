@@ -5,9 +5,7 @@
       <v-touch class="_debugger_board_nav _debugger_board_common_bar" v-on:panstart="onPanStart" v-on:panmove="onPanMove" v-on:panend="onPanEnd" v-bind:pan-options="{ direction: 'horizontal', threshold: 0 }">
         <span class="_debugger_board_common_btn" v-for="item in componentlList" v-bind:class="{ actived: item === currentView }" @touchstart.prevent.stop="onTouchToggleNav(item)" @touchmove.prevent.stop @touchend.prevent.stop>{{ item }}</span>
       </v-touch>
-      <Logger class="_debugger_board_content" v-show="currentView === 'Logger'">
-      </Logger>
-      <component v-bind:is="currentView === 'Logger' ? '' : currentView" class="_debugger_board_content">
+      <component v-bind:is="currentView" class="_debugger_board_content">
       </component>
       <v-touch class="_debugger_board_foot_bar _debugger_board_common_bar" v-on:panstart="onPanStart" v-on:panmove="onPanMove" v-on:panend="onPanEnd" v-bind:pan-options="{ direction: 'horizontal', threshold: 0}">
         <span class="_debugger_board_version">{{ version }}</span>
