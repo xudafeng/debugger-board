@@ -2,9 +2,9 @@
   <div>
     <div class="_debugger_board_common_bar _debugger_board_logger_navbar">
       <div class="_debugger_board_logger_tip">
-        <span class="_debugger_board_logger_filter_btn" v-for="(value, key) in options" v-bind:class="{ actived: key === logFilterType }" @touchstart.prevent.stop="logFilterType = key" @touchmove.prevent.stop @touchend.prevent.stop>{{ key }}</span>
+        <span class="_debugger_board_common_btn" v-for="(value, key) in options" v-bind:class="{ actived: key === logFilterType }" @touchstart.prevent.stop="logFilterType = key" @touchmove.prevent.stop @touchend.prevent.stop>{{ key }}</span>
       </div>
-      <div class="_debugger_board_logger_clear_btn" @touchstart.prevent.stop="clearAllLog" @touchmove.prevent.stop @touchend.prevent.stop>Clear</div>
+      <div class="_debugger_board_common_btn _debugger_board_logger_clear_btn" @touchstartclear_btn.prevent.stop="clearAllLog" @touchmove.prevent.stop @touchend.prevent.stop>Clear</div>
     </div>
     <div class="_debugger_board_logger_content" ref="list">
       <p class="_debugger_board_logger_item" v-bind:style="{ color: options[item.type]['color'] }" v-for="item in logList" v-if="logFilterType === 'all' || logFilterType === item['type']">[{{ item.time }}] {{ item.output }}</p>
@@ -88,29 +88,13 @@ export default {
     }
 
     &_clear_btn {
-      display: inline-block;
-      width: 40px;
-      height: 20px;
-      text-align: center;
-      line-height: 20px;
       border-left: @border-width @border-color solid;
-    }
-
-    &_clear_btn:active {
-      background: @background-acitve-color;
     }
 
     &_tip {
       display: inline-block;
       float: left;
       color: grey;
-
-      span {
-        display: inline-block;
-        height: 20px;
-        line-height: 20px;
-        margin: 0 5px;
-      }
     }
 
     &_content {
