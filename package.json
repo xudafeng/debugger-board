@@ -9,7 +9,7 @@
     "lint": "eslint --fix --ext .js,.vue src",
     "prepublish": "npm run build",
     "serve": "npm run dev:test &",
-    "test": "macaca run -d ./test --verbose --reporter macaca-reporter",
+    "test": "macaca run -d ./test --reporter macaca-reporter",
     "ci": "npm run lint && npm run serve && npm run test"
   },
   "dependencies": {},
