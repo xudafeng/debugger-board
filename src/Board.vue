@@ -42,9 +42,17 @@ export default {
     };
   },
   created() {
+    this.judgeContainer();
     this.devicePixelRatio = window.devicePixelRatio;
   },
   methods: {
+    judgeContainer() {
+      if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
+        this.ifBoardShow = true;
+      } else {
+        this.ifBoardShow = false;
+      };
+    },
     onTouchRefresh() {
       window.location.reload();
     },
