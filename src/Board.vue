@@ -1,18 +1,16 @@
 <template>
   <div v-bind:style="{ fontSize: devicePixelRatio }" id="_debugger_board_app">
-    <div class="_debugger_board_thumbnail" v-show="!ifBoardShow" @click="onClickHideOrShow">D</div>
+    <div class="_debugger_board_thumbnail" v-show="!ifBoardShow" @touchstart.prevent.stop="onTouchHideOrShow" @touchmove.prevent.stop @touchend.prevent.stop>D</div>
     <div class="_debugger_board_main" v-bind:style="{ bottom: datahubBottom + 'px' }" v-show="ifBoardShow">
-      <v-touch class="_debugger_board_nav _debugger_board_common_bar" v-on:panmove="onPanMove" v-on:panend="onPanEnd" v-bind:pan-options="{ direction: 'horizontal', threshold: 0, domEvents: true }">
-        <span class="_debugger_board_common_btn" v-for="item in componentlList" v-bind:class="{ actived: item === currentView }" @click="onClickToggleNav(item)">{{ item }}</span>
+      <v-touch class="_debugger_board_nav _debugger_board_common_bar" v-on:panstart="onPanStart" v-on:panmove="onPanMove" v-on:panend="onPanEnd" v-bind:pan-options="{ direction: 'horizontal', threshold: 0 }">
+        <span class="_debugger_board_common_btn" v-for="item in componentlList" v-bind:class="{ actived: item === currentView }" @touchstart.prevent.stop="onTouchToggleNav(item)" @touchmove.prevent.stop @touchend.prevent.stop>{{ item }}</span>
       </v-touch>
-      <Logger class="_debugger_board_content" v-show="currentView === 'Logger'">
-      </Logger>
-      <component v-bind:is="currentView === 'Logger' ? '' : currentView" class="_debugger_board_content">
+      <component v-bind:is="currentView" class="_debugger_board_content">
       </component>
-      <v-touch class="_debugger_board_foot_bar _debugger_board_common_bar" v-on:panmove="onPanMove" v-on:panend="onPanEnd" v-bind:pan-options="{ direction: 'horizontal', threshold: 0, domEvents: true }">
+      <v-touch class="_debugger_board_foot_bar _debugger_board_common_bar" v-on:panstart="onPanStart" v-on:panmove="onPanMove" v-on:panend="onPanEnd" v-bind:pan-options="{ direction: 'horizontal', threshold: 0}">
         <span class="_debugger_board_version">{{ version }}</span>
-        <span class="_debugger_board_common_btn" @click="onClickRefresh">Refresh</span>
-        <span class="_debugger_board_common_btn" @click="onClickHideOrShow">Hide</span>
+        <span class="_debugger_board_common_btn" @touchstart.prevent.stop="onTouchRefresh" @touchmove.prevent.stop @touchend.prevent.stop>Refresh</span>
+        <span class="_debugger_board_common_btn" @touchstart.prevent.stop="onTouchHideOrShow" @touchmove.prevent.stop @touchend.prevent.stop>Hide</span>
       </v-touch>
     </div>
   </div>
@@ -29,7 +27,7 @@ export default {
   name: 'board',
   data() {
     return {
-      ifBoardShow: false,
+      ifBoardShow: true,
       devicePixelRatio: 2,
       currentView: 'Logger',
       componentlList: [
@@ -58,19 +56,25 @@ export default {
     onTouchRefresh() {
       window.location.reload();
     },
-    onClickHideOrShow() {
+    onTouchHideOrShow() {
       this.ifBoardShow = !this.ifBoardShow;
     },
-    onClickToggleNav(componentName) {
+    onTouchToggleNav(componentName) {
       this.currentView = componentName;
     },
-    onPanMove(e) {
-      this.datahubBottom = this.temporarilyBottom - e.deltaY;
+    onPanStart(e) {
+      e.srcEvent.preventDefault();
       e.srcEvent.stopPropagation();
     },
-    onPanEnd(e) {
-      this.temporarilyBottom = this.datahubBottom;
+    onPanMove(e) {
+      e.srcEvent.preventDefault();
       e.srcEvent.stopPropagation();
+      this.datahubBottom = this.temporarilyBottom - e.deltaY;
+    },
+    onPanEnd(e) {
+      e.srcEvent.preventDefault();
+      e.srcEvent.stopPropagation();
+      this.temporarilyBottom = this.datahubBottom;
     }
   },
   components: {

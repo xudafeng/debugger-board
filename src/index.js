@@ -5,10 +5,6 @@ import VueTouch from 'vue-touch';
 
 import Board from './Board.vue';
 
-import {
-  version
-} from '../package.json';
-
 Vue.use(VueTouch);
 
 window._debugger_board = window._debugger_board || {
@@ -20,14 +16,16 @@ window._debugger_board = window._debugger_board || {
     }
     const container = document.createElement('div');
     container.id = identifer;
-    element.append(container);
+    element.appendChild(container);
 
     new Vue({
       el: `#${identifer}`,
       render: h => h(Board)
     });
   },
-  version
+  /* eslint-disable */
+  version: VERSION
+  /* eslint-enable */
 };
 
 const script = document.querySelector('script[append]');

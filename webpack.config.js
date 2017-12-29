@@ -5,6 +5,8 @@ const webpack = require('webpack')
 
 const pkg = require('./package')
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 module.exports = {
   entry: './src',
   output: {
@@ -39,15 +41,15 @@ module.exports = {
               'css-loader',
               'less-loader'
             ]
-          }
-        }
+          },
+        },
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/
-      }
-    ]
+      },
+    ],
   },
   resolve: {
     alias: {
@@ -55,25 +57,26 @@ module.exports = {
     },
     extensions: ['*', '.js', '.vue', '.json']
   },
-  devtool: '#eval-source-map'
-}
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
-  module.exports.plugins = (module.exports.plugins || []).concat([
+  devtool: '#eval-source-map',
+  plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"production"'
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
-      }
-    }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
+        NODE_ENV: '"dev"'
+      },
+      VERSION: `'${pkg.version}'`
     })
-  ])
+  ]
+}
+
+if (isProduction) {
+  module.exports.devtool = '#source-map'
+  module.exports.plugins.push(new webpack.optimize.UglifyJsPlugin({
+    sourceMap: false,
+    compress: {
+      warnings: false
+    }
+  }))
+  module.exports.plugins.push(new webpack.LoaderOptionsPlugin({
+    minimize: true
+  }))
 }

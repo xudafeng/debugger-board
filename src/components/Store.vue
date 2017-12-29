@@ -1,20 +1,22 @@
 <template>
-  <div class="_debugger_board_store_table">
+  <div class="_debugger_board_store">
     <div class="_debugger_board_common_bar">
-      <span class="_debugger_board_common_btn" @click="onClickTabPage(0)">LocalStorage</span>
-      <span class="_debugger_board_common_btn" @click="onClickTabPage(1)">Cookie</span>
-      <span class="_debugger_board_common_btn" @click="updateData">UpdateStore</span>
+      <span class="_debugger_board_common_btn" @touchstart="onTouchTabPage(0)">LocalStorage</span>
+      <span class="_debugger_board_common_btn" @touchstart="onTouchTabPage(1)">Cookie</span>
+      <span class="_debugger_board_common_btn" @touchstart="updateData">UpdateStore</span>
     </div>
-    <table>
-      <tr>
-        <th><strong> key </strong> </th>
-        <th><strong> value </strong></th>
-      </tr>
-      <tr v-for="(value, key) in currentStorage">
-        <td>{{ key }}</td>
-        <td>{{ value }}</td>
-      </tr>
-    </table>
+    <div class="_debugger_board_store_wrap">
+      <table class="_debugger_board_store_table">
+        <tr>
+          <th><strong> key </strong> </th>
+          <th><strong> value </strong></th>
+        </tr>
+        <tr v-for="(value, key) in currentStorage">
+          <td>{{ key }}</td>
+          <td>{{ value }}</td>
+        </tr>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -48,7 +50,7 @@ export default {
     this.cookie = this.pathCookie(window.document.cookie);
   },
   methods: {
-    onClickTabPage(tabPage) {
+    onTouchTabPage(tabPage) {
       this.tabPage = tabPage;
     },
     updateData() {
@@ -74,13 +76,26 @@ export default {
   @import '../less/components/bar';
   @import '../less/components/btn';
 
-  ._debugger_board_store_table>* {
-    width: 100%;
-  }
+  ._debugger_board_store {
+    & > * {
+      width: 100%;
+    }
 
-  table {
-    border-collapse: collapse;
-    text-align: left;
+    &_wrap {
+      overflow: scroll;
+      width: 100%;
+      max-height: 120px;
+    }
+
+    &_wrap::-webkit-scrollbar {
+      display:none
+    }
+
+    &_table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
   }
 
   th, td {
