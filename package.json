@@ -10,7 +10,8 @@
     "prepublish": "npm run build",
     "serve": "npm run dev:test &",
     "test": "macaca run -d ./test --reporter macaca-reporter",
-    "ci": "npm run lint && npm run serve && npm run test"
+    "ci": "npm run lint && npm run serve && npm run test",
+    "contributor": "git-contributor"
   },
   "dependencies": {},
   "browserslist": [
@@ -42,6 +43,7 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "eslint-plugin-vue-libs": "^1.2.1",
+    "git-contributor": "^1.0.5",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
     "macaca-cli": "^2.0.12",
