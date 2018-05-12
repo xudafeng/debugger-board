@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server",
     "dev:test": "cross-env NODE_ENV=test webpack-dev-server",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "build": "cross-env NODE_ENV=production webpack",
     "lint": "eslint --fix --ext .js,.vue src",
     "prepublish": "npm run build",
     "serve": "npm run dev:test &",
@@ -54,6 +54,7 @@
     "pre-commit": "^1.2.2",
     "vue": "^2.5.9",
     "vue-loader": "^13.0.5",
+    "vue-style-loader": "^4.1.0",
     "vue-template-compiler": "^2.4.4",
     "vue-touch": "^2.0.0-beta.4",
     "webpack": "^3.6.0",
