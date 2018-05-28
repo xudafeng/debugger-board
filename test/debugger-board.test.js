@@ -39,7 +39,8 @@ describe('test/debugger-board.test.js', () => {
     it('panel should be show', () => {
       return driver
         .sleep(3000)
-        .elementTouch('#_debugger_board_app > div._debugger_board_thumbnail', {
+        .elementByCss('#_debugger_board_app > div._debugger_board_thumbnail')
+        .elementTouch({
           type: 'start'
         });
     });
@@ -53,7 +54,8 @@ describe('test/debugger-board.test.js', () => {
           return Promise.reduce(queue, (i, item) => {
             const selector = `div._debugger_board_nav._debugger_board_common_bar > span:nth-child(${item})`;
             return driver
-              .elementTouch(selector, {
+              .elementByCss(selector)
+              .elementTouch({
                 type: 'start'
               })
               .sleep(1000);
