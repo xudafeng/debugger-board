@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Drawer } from 'antd';
 import classnames from 'classnames';
 
-import 'antd/dist/antd.less';
+import 'antd/es/drawer/style';
 import styles from './App.module.less';
 
 export default class App extends Component {
