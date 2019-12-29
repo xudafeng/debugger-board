@@ -6,9 +6,14 @@
     height: 36px;
     bottom: 20px;
     right: 20px;
-    opacity: .6;
+    opacity: 0.6;
     transition: opacity .5s ease-in;
     cursor: pointer;
+
+    &Mini {
+      transition: right .2s ease-in;
+      right: -10px;
+    }
 
     :global {
       @media only screen and (max-width: 760px) {
@@ -24,38 +29,28 @@
 
     &:hover {
       opacity: 1;
+
+      .showMini {
+        opacity: 1;
+      }
     }
 
-    &.hide {
+    &Hide {
       opacity: 0;
       pointer-events: none;
     }
   }
-}
 
-.drawer {
-  :global {
-    .ant-drawer-content-wrapper {
-      height: 100%;
-    }
-
-    .ant-drawer-wrapper-body {
-      height: 100%;
-    }
-
-    .ant-drawer-content {
-      height: 100%;
-    }
-
-    .ant-drawer-body {
-      padding: 0;
-      height: 100%;
-    }
-
-    @media only screen and (max-width: 760px) {
-      & {
-        display: none;
-      }
-    }
+  .minimize {
+    position: absolute;
+    right: -9px;
+    top: -8px;
+    border-radius: 100%;
+    opacity: 0;
+    width: 6px !important;
+    padding: 4px;
+    background: #ee6723;
+    transition: opacity .5s ease-in;
+    box-sizing: content-box;
   }
 }
