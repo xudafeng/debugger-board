@@ -25,25 +25,47 @@ module.exports = {
         exclude: /node_modules/
       }, {
         test: /\.less$/,
+        include: /node_modules/,
         use: [
-          require.resolve('style-loader'),
           {
-            loader: require.resolve('css-loader'),
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              javascriptEnabled: true,
+            },
+          },
+        ],
+      }, {
+        test: /\.less$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
             options: {
               modules: true,
               localIdentName: '[name]_[local]_[hash:base64:5]',
             },
           },
           {
-            loader: require.resolve('less-loader')
+            loader: 'less-loader',
           },
         ],
       }, {
         test: /.css$/,
         use: [
-          require.resolve('style-loader'),
           {
-            loader: require.resolve('css-loader'),
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
           }
         ],
       },
