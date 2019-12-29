@@ -1,0 +1,30 @@
+@import '~antd/dist/antd.less';
+
+.container {
+  z-index: 999999;
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  bottom: 20px;
+  right: 20px;
+  opacity: .6;
+  transition: opacity .4s ease-in;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.drawerContainer {
+  :global {
+    .ant-drawer-body {
+      padding: 0;
+      height: 100%;
+    }
+  }
+}

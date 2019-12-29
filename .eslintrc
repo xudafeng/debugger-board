@@ -1,28 +1,42 @@
 {
+  "root": true,
   "extends": [
-    "standard",
-    "plugin:vue-libs/recommended"
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "prettier"
   ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+    }
+  },
   "plugins": [
-    "mocha"
+    "react"
   ],
   "rules": {
-    "no-labels": 0,
-    "no-empty-label": 0,
-    "semi": [2, "always"],
-    "space-before-function-paren": 0,
-    "no-new": 0
+    "prefer-const": "warn",
+    "no-console": "off",
+    "no-loop-func": "warn",
+    "new-cap": "off",
+    "no-param-reassign": "warn",
+    "func-names": "off",
+    "no-unused-expressions": "error",
+    "block-scoped-var": "error",
+    "react/prop-types": "off",
+    "no-control-regex": "off"
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "16.2"
+    }
   },
   "env": {
     "es6": true,
     "browser": true,
-    "mocha": true
+    "node": true,
+    "mocha": true,
   },
-  "parserOptions": {
-    "ecmaVersion": 6,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true
-    }
-  }
 }

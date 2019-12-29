@@ -1,27 +1,20 @@
 'use strict';
 
-import Vue from 'vue';
-import VueTouch from 'vue-touch';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import Board from './Board.vue';
-
-Vue.use(VueTouch);
+import App from './App.jsx';
 
 window._debugger_board = window._debugger_board || {
   append(element) {
     const identifer = '_debugger_board';
-
     if (document.querySelector(`#${identifer}`)) {
       return;
     }
     const container = document.createElement('div');
     container.id = identifer;
     element.appendChild(container);
-
-    new Vue({
-      el: `#${identifer}`,
-      render: h => h(Board)
-    });
+    ReactDOM.render(<App />, container);
   },
   /* eslint-disable */
   version: VERSION
