@@ -1,11 +1,9 @@
-'use strict'
+'use strict';
 
-const path = require('path')
-const webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
 
-const pkg = require('./package')
-
-const isProduction = process.env.NODE_ENV === 'production';
+const pkg = require('./package');
 
 module.exports = {
   entry: './src',
@@ -17,45 +15,39 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [
-          'vue-style-loader',
-          'css-loader'
-        ],
-      },
-      {
-        test: /\.less$/,
-        use: [
-          'vue-style-loader',
-          'css-loader',
-          'less-loader'
-        ],
-      },
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          loaders: {
-            'less': [
-              'vue-style-loader',
-              'css-loader',
-              'less-loader'
-            ]
-          },
-        },
-      },
-      {
-        test: /\.js$/,
+        test: /\.jsx?/,
         loader: 'babel-loader',
         exclude: /node_modules/
+      }, {
+        test: /\.json$/,
+        loader: 'json-loader',
+        type: 'javascript/auto',
+        exclude: /node_modules/
+      }, {
+        test: /\.less$/,
+        use: [
+          require.resolve('style-loader'),
+          {
+            loader: require.resolve('css-loader'),
+            options: {
+              modules: true,
+              localIdentName: '[name]_[local]_[hash:base64:5]',
+            },
+          },
+          {
+            loader: require.resolve('less-loader')
+          },
+        ],
+      }, {
+        test: /.css$/,
+        use: [
+          require.resolve('style-loader'),
+          {
+            loader: require.resolve('css-loader'),
+          }
+        ],
       },
-    ],
-  },
-  resolve: {
-    alias: {
-      'vue$': 'vue/dist/vue.esm.js'
-    },
-    extensions: ['*', '.js', '.vue', '.json']
+    ]
   },
   devtool: '#eval-source-map',
   plugins: [
@@ -66,17 +58,4 @@ module.exports = {
       VERSION: `'${pkg.version}'`
     })
   ]
-}
-
-if (isProduction) {
-  module.exports.devtool = '#source-map'
-  module.exports.plugins.push(new webpack.optimize.UglifyJsPlugin({
-    sourceMap: false,
-    compress: {
-      warnings: false
-    }
-  }))
-  module.exports.plugins.push(new webpack.LoaderOptionsPlugin({
-    minimize: true
-  }))
-}
+};

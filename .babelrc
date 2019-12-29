@@ -1,18 +1,17 @@
 {
-  presets: [
-    ['env',
-      {
-       modules: false
-      }
-    ],
-    'latest',
-    'stage-3'
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react"
   ],
-  env: {
-    test: {
-      plugins: [
-        'istanbul'
-      ]
-    }
-  }
+  "plugins": [
+    "@babel/plugin-transform-runtime",
+    [
+      "@babel/plugin-proposal-decorators",
+      { "legacy": true }
+    ],
+    [
+      "@babel/plugin-proposal-class-properties",
+      { "loose": true }
+    ]
+  ]
 }
