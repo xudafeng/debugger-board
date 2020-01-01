@@ -1,0 +1,41 @@
+.drawer {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .45);
+  opacity: 1;
+  transition: opacity .5s ease-in;
+
+  &Hide {
+    opacity: 0;
+  }
+
+  &None {
+    display: none;
+  }
+
+  .drawerContent {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 90%;
+    height: 100%;
+    transform: translateX(100%);
+    transition: transform .3s ease-in;
+
+    &Show {
+      transform: translateX(0);
+    }
+  }
+
+  :global {
+    @media only screen and (max-width: 760px) {
+      & {
+        display: none;
+      }
+    }
+  }
+}
