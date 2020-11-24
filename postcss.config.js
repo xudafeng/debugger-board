@@ -5,4 +5,4 @@ module.exports = {
     require('autoprefixer'),
     require('postcss-px-to-viewport')
   ]
-}
+};
