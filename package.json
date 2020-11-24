@@ -43,7 +43,7 @@
     "macaca-electron": "2",
     "macaca-wd": "3",
     "react": "^16.12.0",
-    "react-dom": "^16.10.0",
+    "react-dom": "^16.12.0",
     "style-loader": "^0.19.1",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
