@@ -15,7 +15,14 @@ window._debugger_board = window._debugger_board || {
     const button = document.createElement('div');
     button.id = identifer;
     element.appendChild(button);
-    ReactDOM.render(<App/>, button);
+    const toolbarIcon = 'https://macacajs.github.io/macaca-datahub/logo/logo-color.svg';
+    const localStorageKey = '_debugger_board_minimize';
+    ReactDOM.render((
+      <App
+        toolbarIcon={toolbarIcon}
+        localStorageKey={localStorageKey}
+      />
+    ), button);
     const drawer = document.createElement('div');
     drawer.id = `${identifer}_drawer`;
     element.appendChild(drawer);

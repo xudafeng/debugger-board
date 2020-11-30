@@ -3,50 +3,74 @@ import classnames from 'classnames';
 
 import styles from './App.module.less';
 
-const localStorageKey = '_debugger_board_minimize';
-
 const inIframe = window.self !== window.top;
 
-const App = () => {
-  const [visible, setVisible] = useState(!inIframe);
-  const [minimize, setMinimize] = useState(localStorage.getItem(localStorageKey));
+const useViewModel = (props) => {
+  const { localStorageKey = '_debugger_board_minimize' } = props;
+  const [toolbarVisible, setToolbarVisible] = useState(!inIframe);
+  const [toolbarMinimize, setToolbarMinimize] = useState(localStorage.getItem(localStorageKey));
 
-  const showDrawer = () => {
-    setVisible(false);
-    window._debugger_board_show_drawer();
-  };
-
-  const onMinimize = (e) => {
-    e.stopPropagation();
-    setMinimize(true);
+  const onMinimize = () => {
+    setToolbarMinimize(true);
     localStorage.setItem(localStorageKey, '1');
   };
-
   const _debugger_board_show_button = () => {
-    setVisible(true);
-    setMinimize(false);
+    setToolbarVisible(true);
+    setToolbarMinimize(false);
     localStorage.removeItem(localStorageKey);
-
+  };
+  const showDrawer = () => {
+    setToolbarVisible(false);
+    window._debugger_board_show_drawer();
   };
   window._debugger_board_show_button = window._debugger_board_show_button || _debugger_board_show_button;
+  return {
+    state: {
+      toolbarVisible,
+      toolbarMinimize
+    },
+    onMinimize,
+    showDrawer,
+  };
+};
 
+const App = (props) => {
+  const {
+    state: {
+      toolbarVisible,
+      toolbarMinimize,
+    },
+    onMinimize,
+    showDrawer,
+  } = useViewModel(props);
+  const {
+    toolbarIcon,
+    toolbarIconSize = 36,
+  } = props; 
   return (
-    <div className={styles.container}>
+    <>
       <div
-        className={classnames(styles.button, {
-          [styles.buttonHide]: !visible,
-          [styles.buttonMini]: minimize,
+        className={classnames(styles.toolbar, {
+          [styles.hide]: !toolbarVisible,
+          [styles.mini]: toolbarMinimize,
         })}
         onClick={showDrawer}
       >
-        <img src="https://macacajs.github.io/macaca-datahub/logo/logo-color.svg" />
         <img
-          onClick={onMinimize}
-          className={classnames(styles.minimize, styles.showMini)}
+          src={toolbarIcon}
+          width={toolbarIconSize}
+          height={toolbarIconSize}
+        />
+        <img
+          onClick={e => {
+            e.stopPropagation();
+            onMinimize();
+          }}
+          className={classnames(styles.minimizeButton, styles.mini)}
           src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAUUlEQVQ4T2NkoBAwUqifYdQABkgY/P//P4GBgUGexAB9yMjIuABmwAEGBgZ7Eg04yMjI6EA1AyYwMDAYkOiCC4yMjAWj6QCaDkgMPBTlFAciAMdPFBFJiZyaAAAAAElFTkSuQmCC"
         />
       </div>
-    </div>
+    </>
   );
 };
 
