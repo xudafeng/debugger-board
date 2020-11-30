@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
 
 import styles from './Drawer.module.less';
 
@@ -27,6 +28,11 @@ const Drawer = (props) => {
       </div>
     </div>
   );
+};
+
+Drawer.PropTypes = {
+  state: PropTypes.object,
+  onDrawerClose: PropTypes.func,
 };
 
 export default Drawer;

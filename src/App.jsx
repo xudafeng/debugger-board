@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
 import Drawer from './Drawer.jsx';
 
 import styles from './App.module.less';
@@ -7,7 +8,7 @@ import styles from './App.module.less';
 const inIframe = window.self !== window.top;
 
 const useViewModel = (props) => {
-  const { localStorageKey = '_debugger_board_minimize' } = props;
+  const { localStorageKey } = props;
   const [toolbarVisible, setToolbarVisible] = useState(!inIframe);
   const [toolbarMinimize, setToolbarMinimize] = useState(localStorage.getItem(localStorageKey));
   const [drawerVisible, setDrawerVisible] = useState(false);
@@ -55,7 +56,7 @@ const App = (props) => {
   } = vm;
   const {
     toolbarIcon,
-    toolbarIconSize = 36,
+    toolbarIconSize,
   } = props; 
   return (
     <>
@@ -83,6 +84,17 @@ const App = (props) => {
       <Drawer {...props} {...vm} />
     </>
   );
+};
+
+App.defaultProps = {
+  localStorageKey: '_debugger_board_minimize',
+  toolbarIconSize: 36,
+};
+
+App.PropTypes = {
+  localStorageKey: PropTypes.string,
+  toolbarIcon: PropTypes.string,
+  toolbarIconSize: PropTypes.number,
 };
 
 export default App;
