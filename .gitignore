@@ -1,9 +1,5 @@
 dist
-coverage/
-reports/
-screenshots/
-build/
-logs/
+coverage
+node_modules
 *.sw*
 *.un~
-*.tgz
