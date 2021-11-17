@@ -58,7 +58,7 @@ And set showBoard `true`.
 | :---: | :---: |
 
 
-This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor), auto updated at `Mon Jul 26 2021 19:15:41 GMT+0800`.
+This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor), auto updated at `Wed Nov 17 2021 12:42:51 GMT+0800`.
 
 <!-- GITCONTRIBUTOR_END -->
 

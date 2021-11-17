@@ -47,7 +47,7 @@
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
     "macaca-cli": "^2.0.12",
-    "macaca-electron": "2",
+    "macaca-electron": "11",
     "macaca-wd": "3",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
